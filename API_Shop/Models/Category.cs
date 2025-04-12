@@ -1,4 +1,6 @@
-﻿namespace API_Shop.Models
+﻿using System.Text.Json.Serialization;
+
+namespace API_Shop.Models
 {
     public class Category
     {
@@ -7,6 +9,7 @@
         public string Description { get; set; }
 
         // navigation properties
+        [JsonIgnore]
         public ICollection<Product>? Products { get; set; }
     }
 }
