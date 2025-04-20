@@ -26,8 +26,15 @@ namespace API_Shop.Controllers
         // GET: api/Products
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> GetAllProducts()
+        public async Task<ActionResult> GetAllProducts(int pageCount, int pageId)
         {
+            var result = _context.Products
+                .OrderBy(p => p.Id)
+                .Skip(pageId * pageCount)
+                .Take(pageCount)
+                .ToList();
+
+
             return Ok(await _context.Products.ToArrayAsync());
         }
 
